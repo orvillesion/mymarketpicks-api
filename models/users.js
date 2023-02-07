@@ -13,10 +13,8 @@ const userCartSchema = mongoose.Schema({
 const userAddressSchema = mongoose.Schema({
   barangay: String,
   municipality: String,
-  landmark: { 
-    type: Array,
-    default: []
-  }
+  landmark: String,
+  priority: Number
 })
 
 const userSchema = mongoose.Schema({
@@ -30,12 +28,8 @@ const userSchema = mongoose.Schema({
     },
     mobile: String,
     password: String,
-    username: {
-      type: String,
-      immutable: true
-    },
     address: [userAddressSchema],
-    money: {
+    mode_payment: {
       type: Array,
       default: [],
     },
@@ -45,7 +39,8 @@ const userSchema = mongoose.Schema({
       default: [],
     },
     messenger_name: String,
-    account_status: String,
+    account_status: Boolean,
+    account_verified: Boolean,
     user_cart: [userCartSchema],
     user_image: {
         type: String,

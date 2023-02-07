@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 require('dotenv').config({ path: '../.env'});
 
-const connectDB = async() => {
+module.exports.connectMongoDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
             //useNewUrlParser: true,
@@ -15,5 +15,3 @@ const connectDB = async() => {
         process.exit(1)
     }
 }
-
-module.exports = connectDB;

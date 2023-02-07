@@ -7,10 +7,11 @@ var cookieParser = require('cookie-parser');
 var http = require('http');
 // Utilities imports
 require('dotenv').config();
-var database = require('./config/database');
+var connectMongoDB = require('./config/database').connectMongoDB;
 // Express server initialization
 var app = express();
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // Environmental variables
 var whitelistIp = process.env.WHITELIST;
@@ -43,11 +44,10 @@ app.use('/users', usersRouter);
 // app.use('/items', itemsRouter);
 // app.use('/orders', ordersRouter);
 // Database and server initialization
-var port = process.env.PORT;
+var port = process.env.PORT || 5000;
 app.set('trust proxy', 1);
 var httpServer = http.createServer(app);
-database()
-    .then(function () {
+connectMongoDB().then(function () {
     httpServer.listen(port, '0.0.0.0', function () {
         console.log("✈  Database connected!");
         console.log("\uD83D\uDE80 server is running on port: ".concat(port, "!"));

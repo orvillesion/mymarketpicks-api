@@ -8,11 +8,12 @@ const http = require('http');
 
 // Utilities imports
 require('dotenv').config();
-const database = require('./config/database');
+const { connectMongoDB } = require('./config/database');
 
 // Express server initialization
 const app = express();
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
 
 // Environmental variables
@@ -52,11 +53,10 @@ app.use('/users', usersRouter);
 // app.use('/orders', ordersRouter);
 
 // Database and server initialization
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 app.set('trust proxy', 1)
 const httpServer = http.createServer(app)
-database()
-    .then(() => {
+connectMongoDB().then(() => {
         httpServer.listen(port, '0.0.0.0', () => {
             console.log("✈  Database connected!")
             console.log(`🚀 server is running on port: ${port}!`)
