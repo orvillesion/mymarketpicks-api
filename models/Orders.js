@@ -7,6 +7,8 @@ const orderSchema = mongoose.Schema(
       default: () => Date.now(),
     },
     user_id: mongoose.ObjectId,
+    rider_id: mongoose.ObjectId,
+    store_id: mongoose.ObjectId,
     items: {
       type: Array,
       default: [],
@@ -21,8 +23,6 @@ const orderSchema = mongoose.Schema(
         default: []
     },
     order_code: String,
-    rider_id: mongoose.ObjectId,
-    store_id: mongoose.ObjectId,
     instructions: String,
     status: String
   },

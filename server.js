@@ -32,7 +32,7 @@ app.use(cors({
 var usersRouter = require('./routes/users');
 var itemsRouter = require('./routes/items');
 var ordersRouter = require('./routes/orders');
-var storesRouter = require('./routes/orders');
+var storesRouter = require('./routes/stores');
 var userControllerRouter = require('./controller/users');
 var sellerControllerRouter = require('./controller/sellers');
 var riderControllerRouter = require('./controller/riders');
@@ -40,8 +40,8 @@ app.use('/controller', userControllerRouter);
 // app.use('/controller', sellerControllerRouter);
 // app.use('/controller', riderControllerRouter);
 app.use('/users', usersRouter);
-// app.use('/stores', storesRouter);
-// app.use('/items', itemsRouter);
+app.use('/stores', storesRouter);
+app.use('/items', itemsRouter);
 // app.use('/orders', ordersRouter);
 // Database and server initialization
 var port = process.env.PORT || 5000;

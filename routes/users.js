@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 // MODEL IMPORT
 const USERS = require('../models/users');
-const { objectIDValidator } = require('../utils/validator');
 
 router.get("/get-user-profile", async (req, res) => {
     // const idCheck: Boolean = objectIDValidator(req.userId)

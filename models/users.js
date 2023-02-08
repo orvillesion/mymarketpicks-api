@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const userCartSchema = mongoose.Schema({
     user_id: mongoose.ObjectId,
+    store_id: mongoose.ObjectId,
     item_id: mongoose.ObjectId,
     quantity: Number,
     date_time: {
@@ -15,7 +16,15 @@ const userAddressSchema = mongoose.Schema({
   municipality: String,
   landmark: String,
   priority: Number
-})
+});
+
+const userLocation = mongoose.Schema({
+  date_time: {
+    type: Date,
+    default: () => Date.now()
+  },
+  location_coordinates: String
+});
 
 const userSchema = mongoose.Schema({
     first_name: String,
@@ -34,13 +43,10 @@ const userSchema = mongoose.Schema({
       default: [],
     },
     user_type: String,
-    store_id: {
-      type: Array,
-      default: [],
-    },
     messenger_name: String,
     account_status: Boolean,
     account_verified: Boolean,
+    location: [userLocation],
     user_cart: [userCartSchema],
     user_image: {
         type: String,

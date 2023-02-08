@@ -11,6 +11,10 @@ module.exports.generateAccessToken = async = (payload) => {
     return jwt.sign(payload, process.env.USER_ACCESS_TOKEN, { expiresIn: '1d' });
 }
 
+module.exports.generateAdminToken = async = (payload) => {
+    return jwt.sign(payload, process.env.ADMIN_ACCESS_TOKEN, { expiresIn: '1d' });
+}
+
 module.exports.extractID = async (request) => {
     try {
         // if(request === null || request === undefined) { 

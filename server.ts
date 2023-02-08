@@ -37,7 +37,7 @@ app.use(cors({
 const usersRouter: Object = require('./routes/users');
 const itemsRouter: Object = require('./routes/items');
 const ordersRouter: Object = require('./routes/orders');
-const storesRouter: Object = require('./routes/orders');
+const storesRouter: Object = require('./routes/stores');
 
 const userControllerRouter: Object = require('./controller/users');
 const sellerControllerRouter: Object = require('./controller/sellers');
@@ -48,8 +48,8 @@ app.use('/controller', userControllerRouter);
 // app.use('/controller', riderControllerRouter);
 
 app.use('/users', usersRouter);
-// app.use('/stores', storesRouter);
-// app.use('/items', itemsRouter);
+app.use('/stores', storesRouter);
+app.use('/items', itemsRouter);
 // app.use('/orders', ordersRouter);
 
 // Database and server initialization

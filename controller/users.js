@@ -37,7 +37,6 @@ router.post("/users/login", async (req, res) => {
         .send('Cookies Registered');
 
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ errors: { message:'Internal server error' }})
     }
 });
@@ -74,6 +73,11 @@ router.post("/users/registration", async (req, res) => {
         }
     }
 });
+
+// API for user deletion
+router.post("/users/remove-user", async (req, res) => {
+
+})
 
 // <************************************************ START PROFILE AREA ************************************************>
 
@@ -183,7 +187,7 @@ router.post("/users/profile-update-address/:addressId", async (req, res) => {
 
 // API for removing existing address in a user
 router.delete("/users/profile-remove-address/:addressId", async (req, res) => {
-
+    // NOTE: Missing error checking and middleware
     const userUid = await extractID(req.cookies.accessKey);
     const addressId = req.params.addressId;
 
