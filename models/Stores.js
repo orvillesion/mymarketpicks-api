@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const itemSchema = mongoose.Schema({
     store_id: mongoose.ObjectId,
-    date_added: {
-        type: Date,
-        default: () => Date.now()
-    },
     item_name: String,
     category: String,
     type: String,
@@ -13,6 +9,10 @@ const itemSchema = mongoose.Schema({
     quantity: Number,
     units: Number,
     description: String,
+    unavailable_area: {
+        type: Array,
+        default: []
+    },
     img_path: {
         type: String,
         contentType: String
@@ -34,7 +34,6 @@ const storeSchema = mongoose.Schema({
     },
     rating: Number,
     items: [itemSchema]
-
 }, { timestamps: true });
 
 module.exports = stores = mongoose.model("stores", storeSchema);

@@ -1,15 +1,14 @@
 // LIBRARY IMPORT
-let express = require('express');
+const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 // MODEL IMPORT
 const STORES = require('../models/stores');
 const { extractID } = require('../middleware/token');
 
-// API for getting all stores in the database
-router.get("/get-all-stores", async (req, res) => {
+// API for getting store information
+router.get("/search-store", async (req, res) => {
 
 });
 
@@ -35,7 +34,7 @@ router.post("/create-new-store", async (req, res) => {
             return res.status(201).json({ success: { message:'store added' }});
         })
     } catch (error) {
-        return res.sendStatus(500)
+        return res.sendStatus(500);
     }
 });
 
@@ -67,7 +66,7 @@ router.post("/update-store/:storeId", async (req, res) => {
         if(update) return res.status(201).json({ success: { message:'store details updated' }})
         return res.status(400)
     } catch (error) {
-        return res.sendStatus(500)
+        return res.sendStatus(500);
     }
 });
 
@@ -81,7 +80,7 @@ router.delete("/remove-store/:storeId", async (req, res) => {
         if(remove) return res.status(201).json({ success: { message:'store removed' }})
         return res.status(400)
     } catch (error) {
-        return res.sendStatus(500)
+        return res.sendStatus(500);
     }
 });
 
