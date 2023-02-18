@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc server.ts && node server.js",
-    "dev": "node server.js"
+    "start": "node server.js",
+    "dev": "tsc server.ts && node server.js"
   },
   "keywords": [],
   "author": "",
