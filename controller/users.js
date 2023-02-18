@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 
 // Model imports
 const USERS = require('../models/users');
-const { emailValidator, stringInputTrimmer, objectIDValidator } = require('../utils/validator');
-const { extractID } = require("../middleware/token");
 
 // Utilities imports
+const { emailValidator, stringInputTrimmer, objectIDValidator } = require('../utils/validator');
+const { extractID } = require("../middleware/token");
 require('dotenv').config({ path: '../.env'});
-const { generateAccessToken } = require('../middleware/token');
+const { generateToken } = require('../middleware/token');
 
 // API for user login
 router.post("/users/login", async (req, res) => {
@@ -31,13 +31,12 @@ router.post("/users/login", async (req, res) => {
             id: user._id,
             userType: user.user_type
         }
-        const accessKey = generateAccessToken(tokenPayload);
+        const accessKey = generateToken("user", tokenPayload);
         return res.status(200)
         .cookie("accessKey", accessKey, { expires: new Date(new Date().getTime() + 518400 * 1000)})
         .send('Cookies Registered');
-
     } catch (error) {
-        return res.status(500).json({ errors: { message:'Internal server error' }})
+        return res.status(500).json({ errors: { message:'Internal server error' }});
     }
 });
 
@@ -57,7 +56,7 @@ router.post("/users/registration", async (req, res) => {
             email: email.toLowerCase(),
             password: hashedPassword,
             mobile,
-            user_type: "regular-user",
+            user_type: "user",
             account_status: true,
             account_verified: false
         });

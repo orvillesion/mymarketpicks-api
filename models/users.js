@@ -12,18 +12,33 @@ const userCartSchema = mongoose.Schema({
 }, { timestamps: true })
 
 const userAddressSchema = mongoose.Schema({
+  house_number: Number,
   barangay: String,
   municipality: String,
+  region: String,
   landmark: String,
-  priority: Number
+  additional_information: String,
+  priority: Number,
+  address_category: String,
+});
+
+const geoSchema = mongoose.Schema({
+  type: {
+    type: String,
+    default: "Point"
+  },
+  coordinates: {
+    type: [Number],
+    index: "2dsphere"
+  }
 });
 
 const userLocation = mongoose.Schema({
+  geometry: geoSchema,
   date_time: {
     type: Date,
     default: () => Date.now()
   },
-  location_coordinates: String
 });
 
 const userSchema = mongoose.Schema({
@@ -33,7 +48,8 @@ const userSchema = mongoose.Schema({
         type: String,
         unique: true,
         immutable: true,
-        lowercase: true
+        lowercase: true,
+        index: true
     },
     mobile: String,
     password: String,

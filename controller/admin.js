@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const ADMIN = require('../models/admin');
 
 // Utilities import
-const { generateAdminToken } = require('../middleware/token');
+const { generateToken } = require('../middleware/token');
 
 // API for admin login
 router.post("/admin/login", async (req, res) => {
@@ -25,7 +25,7 @@ router.post("/admin/login", async (req, res) => {
             userType: admin.user_type
         }
 
-        const accessKey = generateAdminToken(payload);
+        const accessKey = generateToken("admin", payload);
         return res.status(200)
         .cookie("accessKey", accessKey, { expires: new Date(new Date().getTime() + 518400 * 1000)})
         .send('Cookies Registered');

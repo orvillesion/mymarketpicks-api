@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const itemSchema = mongoose.Schema({
-    store_id: mongoose.ObjectId,
     item_name: String,
     category: String,
     type: String,
@@ -9,6 +8,7 @@ const itemSchema = mongoose.Schema({
     quantity: Number,
     units: Number,
     description: String,
+    discount: Number,
     unavailable_area: {
         type: Array,
         default: []
@@ -16,12 +16,11 @@ const itemSchema = mongoose.Schema({
     img_path: {
         type: String,
         contentType: String
-    }
+    },
 }, { timestamps: true });
 
 
 const storeSchema = mongoose.Schema({
-    owner_id: mongoose.ObjectId,
     store_name: String,
     mobile: String,
     address: String,
@@ -33,7 +32,13 @@ const storeSchema = mongoose.Schema({
         type: String,
     },
     rating: Number,
-    items: [itemSchema]
+    items: [itemSchema],
+    username: {
+        type: String,
+        unique: true,
+        lowercase: true
+    },
+    password: String
 }, { timestamps: true });
 
 module.exports = stores = mongoose.model("stores", storeSchema);

@@ -44,8 +44,8 @@ const sellerControllerRouter: Object = require('./controller/sellers');
 const riderControllerRouter: Object = require('./controller/riders');
 
 app.use('/controller', userControllerRouter);
-// app.use('/controller', sellerControllerRouter);
-// app.use('/controller', riderControllerRouter);
+//app.use('/controller', sellerControllerRouter);
+app.use('/controller', riderControllerRouter);
 
 app.use('/users', usersRouter);
 app.use('/stores', storesRouter);
