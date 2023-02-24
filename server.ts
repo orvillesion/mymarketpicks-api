@@ -38,6 +38,7 @@ const usersRouter: Object = require('./routes/users');
 const itemsRouter: Object = require('./routes/items');
 const ordersRouter: Object = require('./routes/orders');
 const storesRouter: Object = require('./routes/stores');
+const riderRouter: Object = require('./routes/riders');
 
 const userControllerRouter: Object = require('./controller/users');
 const sellerControllerRouter: Object = require('./controller/sellers');
@@ -50,6 +51,7 @@ app.use('/controller', riderControllerRouter);
 app.use('/users', usersRouter);
 app.use('/stores', storesRouter);
 app.use('/items', itemsRouter);
+app.use('/riders', riderRouter);
 // app.use('/orders', ordersRouter);
 
 // Database and server initialization
