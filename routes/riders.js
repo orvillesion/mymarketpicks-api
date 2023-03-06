@@ -11,6 +11,18 @@ const RIDERS = require('../models/riders');
 const { extractID } = require('../middleware/token');
 const { objectIDValidator } = require('../utils/validator');
 
+//
+router.get("/all-rider", async (req, res) => {
+    try {
+        const allRiders = await RIDERS.find();
+        if(!allRiders)return res.status(404).json({ errors:{ message: 'no data found' }});
+        return res.status(200).json(allRiders);
+    } catch (error) {
+        return res.sendStatus(500);
+    }
+});
+
+// API for getting a specific rider profile
 router.get("/get-rider-profile", async (req, res) => {
 
     try {

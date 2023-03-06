@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const userCartSchema = mongoose.Schema({
-    user_id: mongoose.ObjectId,
     store_id: mongoose.ObjectId,
     item_id: mongoose.ObjectId,
     quantity: Number,

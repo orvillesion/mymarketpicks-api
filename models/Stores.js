@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 
 const itemSchema = mongoose.Schema({
     item_name: String,
-    category: String,
+    category: {
+        type: String,
+        lowercase: true
+    },
     type: String,
     price: Number,
     quantity: Number,

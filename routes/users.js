@@ -11,6 +11,16 @@ const USERS = require('../models/users');
 const { extractID } = require('../middleware/token');
 const { objectIDValidator } = require('../utils/validator');
 
+router.get("/all-users", async (req, res) => {
+    try {
+        const users = await USERS.find();
+        if(!users)return res.status(404).json({ errors:{ message: 'no data found' }})
+        return res.status(200).json(users)
+    } catch (error) {
+        return res.sendStatus(500);
+    }
+});
+
 router.get("/get-user-profile", async (req, res) => {
     // const idCheck: Boolean = objectIDValidator(req.userId)
     try {
@@ -26,6 +36,14 @@ router.get("/get-user-profile", async (req, res) => {
     } catch (error) {
         return res.sendStatus(500);
     }
+});
+
+router.post("/user-add-item-cart", async (req, res) => {
+
+});
+
+router.post("/user-remove-item-cart", async (req, res) => {
+
 });
 
 module.exports = router;

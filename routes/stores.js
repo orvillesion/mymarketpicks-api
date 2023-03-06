@@ -7,8 +7,19 @@ const mongoose = require('mongoose');
 const STORES = require('../models/stores');
 const { extractID } = require('../middleware/token');
 
+// API for getting all the store
+router.get("/all-store", async (req, res) => {
+    try {
+        const allStores = await STORES.find();
+        if(!allStores)return res.status(404).json({ errors:{ message: 'no data found' }});
+        return res.status(200).json(allStores);
+    } catch (error) {
+        return res.sendStatus(500);
+    }
+});
+
 // API for getting store information
-router.get("/search-store", async (req, res) => {
+router.post("/search-store", async (req, res) => {
 
 });
 

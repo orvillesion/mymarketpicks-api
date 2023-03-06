@@ -28,6 +28,7 @@ const riderSchema = mongoose.Schema({
     barangay: String,
     municipality: String,
     region: String,
+    rider_credits: Number,
     email: {
         type: String,
         unique: true,
